@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "f4330d9c-c721-4f8c-bcc6-c27ec143b509",
+		"name": "Sistema Bancario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25123603"
+	},
+	"item": [
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Osorio\",\r\n    \"genero\":\"F\",\r\n    \"edad\":\"35\",\r\n    \"identificacion\":\"1234567892\",\r\n    \"direccion\":\"13 junio y Equinoccial\",\r\n    \"telefono\":\"098874587\",\r\n    \"password\":\"1245\",\r\n    \"estado\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Juan Osorio\",\r\n    \"genero\":\"M\",\r\n    \"edad\":\"35\",\r\n    \"identificacion\":\"1234567892\",\r\n    \"direccion\":\"13 junio y Equinoccial\",\r\n    \"telefono\":\"098874587\",\r\n    \"password\":\"1245\",\r\n    \"estado\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/clientes/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"clientes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/clientes/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"clientes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Asignar Cuenta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\":\"585545\",\r\n    \"tipo\":\"CORRIENTE\",\r\n    \"saldo\":\"1000\",\r\n    \"estado\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/clientes/asignar-cuenta/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"clientes",
+								"asignar-cuenta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cuenta",
+			"item": [
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\":\"225487\",\r\n    \"tipo\":\"CORRIENTE\",\r\n    \"saldoInicial\":\"100\",\r\n    \"estado\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/cuentas",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/cuentas",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\":\"225487\",\r\n    \"tipo\":\"CORRIENTE\",\r\n    \"saldoInicial\":\"100\",\r\n    \"estado\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/cuentas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"cuentas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/cuentas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"cuentas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Asignar Movimiento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"fecha\": \"10/02/2023\",       \r\n        \"tipo\": \"DEB\",\r\n        \"valorMovimiento\": \"-540\",\r\n        \"saldoInicial\": \"540\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/cuentas/asignar-movimiento/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"cuentas",
+								"asignar-movimiento",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movimiento",
+			"item": [
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"fecha\": \"16/04/2023\",\r\n    \"tipo\": \"DEB\",\r\n    \"valorMovimiento\": \"29\",\r\n    \"saldoInicial\": \"60\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/movimientos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"movimientos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/movimientos",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/movimientos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"movimientos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
