@@ -1,10 +1,9 @@
-package com.nttdata.clientes.controllers;
+package com.nttdata.movimientos.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nttdata.clientes.entities.Cliente;
-import com.nttdata.clientes.services.ClienteService;
-import com.nttdata.cuentas.entities.Cuenta;
-import com.nttdata.cuentas.util.TipoCuenta;
+import com.nttdata.movimientos.entities.Movimiento;
+import com.nttdata.movimientos.services.MovimientoService;
+import com.nttdata.movimientos.util.TipoMovimiento;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,18 +25,21 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @ExtendWith(MockitoExtension.class)
-class ClienteControllerTest {
+class MovimientoControllerTest {
+
     private MockMvc mockMvc;
 
     @Mock
-    private ClienteService service;
+    private MovimientoService service;
 
     @InjectMocks
-    private ClienteController controller;
+    private MovimientoController controller;
 
-    private JacksonTester<Cliente> clienteJacksonTester;
+    private JacksonTester<Movimiento> movimientoJacksonTester;
 
-    private Cuenta cuenta;
+
+    private Movimiento movimiento;
+
 
     @BeforeEach
     public void setup() {
@@ -49,31 +51,51 @@ class ClienteControllerTest {
                 .addFilters()
                 .build();
 
-        cuenta = new Cuenta();
-        cuenta.setNumero("1234");
-        cuenta.setTipo(TipoCuenta.AHORRO);
-        cuenta.setSaldo(25.0);
-        cuenta.setEstado(true);
+        movimiento = new Movimiento();
+        movimiento.setId(1L);
+        movimiento.setTipo(TipoMovimiento.CRE);
+        movimiento.setValorMovimiento(50.0);
+        movimiento.setFecha("10/12/2022");
+        movimiento.setSaldoInicial(10.6);
+
+
     }
 
     @Test
     void deberiaObtenerElDetallePorId() throws Exception {
-
         // given
         given(service.detalle(1L))
-                .willReturn(Optional.of(new Cliente("123", true, Arrays.asList(cuenta))));
+                .willReturn(Optional.of(movimiento));
 
         // when
         MockHttpServletResponse response = mockMvc.perform(
-                        get("/clientes/1")
+                        get("/movimientos/1")
                                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
         // then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString()).isEqualTo(
-                clienteJacksonTester.write( new Cliente("123", true, Arrays.asList(cuenta))).getJson()
+                movimientoJacksonTester.write(movimiento).getJson()
         );
     }
 
+
+    @Test
+    void deberiaListar() throws Exception {
+
+        // given
+        given(service.listar())
+                .willReturn(Arrays.asList(movimiento));
+
+        // when
+        MockHttpServletResponse response = mockMvc.perform(
+                        get("/movimientos")
+                                .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+
+        // then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+
+    }
 }

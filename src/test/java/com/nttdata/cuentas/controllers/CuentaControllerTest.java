@@ -1,7 +1,6 @@
 package com.nttdata.cuentas.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nttdata.clientes.entities.Cliente;
 import com.nttdata.cuentas.entities.Cuenta;
 import com.nttdata.cuentas.services.CuentaService;
 import com.nttdata.cuentas.util.TipoCuenta;
@@ -16,13 +15,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
