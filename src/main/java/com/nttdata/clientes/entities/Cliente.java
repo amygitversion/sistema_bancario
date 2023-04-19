@@ -26,6 +26,7 @@ public class Cliente extends Persona {
     @NotNull
     private Boolean estado;
 
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cliente_id")
     private List<Cuenta> cuentas;

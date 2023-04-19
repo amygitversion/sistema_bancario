@@ -1,6 +1,7 @@
 package com.nttdata.cuentas.services;
 
 import com.nttdata.cuentas.entities.Cuenta;
+import com.nttdata.cuentas.excepciones.SaldoInsuficienteException;
 import com.nttdata.movimientos.entities.Movimiento;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,6 @@ public interface CuentaService {
 
     Optional<Cuenta> buscarPorNumero(String numero);
 
-   Optional<Movimiento> asignarMovimiento(Movimiento movimiento, Long cuentaId);
+   Optional<Movimiento> asignarMovimiento(Movimiento movimiento, Long cuentaId) throws SaldoInsuficienteException;
 
 }

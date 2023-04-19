@@ -2,6 +2,7 @@ package com.nttdata.cuentas.services;
 
 
 import com.nttdata.cuentas.entities.Cuenta;
+import com.nttdata.cuentas.excepciones.SaldoInsuficienteException;
 import com.nttdata.cuentas.repositories.CuentaRepository;
 import com.nttdata.movimientos.entities.Movimiento;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class CuentaServiceImpl implements CuentaService {
 
     @Override
     @Transactional
-    public Optional<Movimiento> asignarMovimiento(Movimiento movimiento, Long cuentaId) {
+    public Optional<Movimiento> asignarMovimiento(Movimiento movimiento, Long cuentaId) throws SaldoInsuficienteException {
         Optional<Cuenta> cuentaOptional = repository.findById(cuentaId);
         if (cuentaOptional.isPresent()) {
             Cuenta cuenta = cuentaOptional.get();
@@ -56,7 +57,8 @@ public class CuentaServiceImpl implements CuentaService {
                     | (movimiento.getValorMovimiento() < 0 && cuenta.getSaldo() >= Math.abs(movimiento.getValorMovimiento()))) {
                 cuenta.setSaldo(cuenta.getSaldo() + movimiento.getValorMovimiento());
             } else {
-                return Optional.empty();
+                String s = "Fondos insuficientes. Saldo: "+cuenta.getSaldo();
+               throw new SaldoInsuficienteException(s);
             }
 
             cuenta.getMovimientos().add(movimiento);

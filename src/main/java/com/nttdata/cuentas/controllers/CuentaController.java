@@ -2,6 +2,7 @@ package com.nttdata.cuentas.controllers;
 
 
 import com.nttdata.cuentas.entities.Cuenta;
+import com.nttdata.cuentas.excepciones.SaldoInsuficienteException;
 import com.nttdata.cuentas.services.CuentaService;
 import com.nttdata.movimientos.entities.Movimiento;
 import jakarta.validation.Valid;
@@ -89,11 +90,16 @@ public class CuentaController {
     }
 
     @PutMapping("/asignar-movimiento/{cuentaId}")
-    public ResponseEntity<?> asignarMovimiento(@RequestBody Movimiento movimiento, @PathVariable Long cuentaId) {
-        Optional<Movimiento> movimientoOptional = service.asignarMovimiento(movimiento, cuentaId);
-
-        if (movimientoOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(movimientoOptional.get());
+    public ResponseEntity<?> asignarMovimiento(@RequestBody Movimiento movimiento, @PathVariable Long cuentaId) throws SaldoInsuficienteException {
+        try{
+            Optional<Movimiento> movimientoOptional = service.asignarMovimiento(movimiento, cuentaId);
+            if (movimientoOptional.isPresent()) {
+                return ResponseEntity.status(HttpStatus.CREATED).body(movimientoOptional.get());
+            }
+        }catch (SaldoInsuficienteException s){
+            ResponseEntity.badRequest()
+                    .body(Collections
+                            .singletonMap("Error", s.getMessage()));
         }
         return ResponseEntity.notFound().build();
     }

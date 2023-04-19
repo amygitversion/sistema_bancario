@@ -40,4 +40,7 @@ public class Cuenta {
         movimientos=new ArrayList<>();
     }
 
+    public <T> Cuenta(List<T> asList) {
+    }
+
 }
