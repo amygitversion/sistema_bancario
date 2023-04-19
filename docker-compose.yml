@@ -13,6 +13,23 @@ services:
       - db-data:/var/lib/mysql
       - ./base-datos/:/docker-entrypoint-initdb.d
 
+  api_dev:
+    build:
+      context: .
+      target: build
+    depends_on:
+      - db
+    ports:
+      - "8002:8001"
+    command: sleep 3600
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: password
+    volumes:
+      - .:/app
+
   api:
     build: .
     depends_on:
@@ -24,8 +41,6 @@ services:
       DB_HOST: db
       DB_USER: root
       DB_PASSWORD: password
-    volumes:
-      - .:/app
 
 volumes:
   db-data:

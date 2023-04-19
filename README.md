@@ -14,3 +14,10 @@ docker-compose up -d
 ```
 
 Luego se puede probar haciendo peticiones a la URL: http://localhost:8001/
+
+## Tests
+
+Para correr los test, ejecutar
+```bash
+docker-compose run api_dev mvn test
+```
