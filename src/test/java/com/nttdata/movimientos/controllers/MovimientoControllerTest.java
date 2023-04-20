@@ -17,6 +17,8 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -55,7 +57,7 @@ class MovimientoControllerTest {
         movimiento.setId(1L);
         movimiento.setTipo(TipoMovimiento.CRE);
         movimiento.setValorMovimiento(50.0);
-        movimiento.setFecha("10/12/2022");
+        movimiento.setFecha(LocalDate.parse("10/12/2022", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         movimiento.setSaldoInicial(10.6);
 
 
