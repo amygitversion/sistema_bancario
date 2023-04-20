@@ -2,7 +2,7 @@ package com.nttdata.clientes.services;
 
 import com.nttdata.clientes.entities.Cliente;
 import com.nttdata.clientes.entities.Persona;
-import com.nttdata.clientes.repositories.ClienteRepository;
+import com.nttdata.clientes.repositories.PersonaRepository;
 import com.nttdata.cuentas.entities.Cuenta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class ClienteServiceImpl implements ClienteService {
     @Autowired
-    private ClienteRepository repository;
+    private PersonaRepository repository;
 
     @Override
     @Transactional(readOnly = true)

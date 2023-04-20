@@ -29,6 +29,7 @@ public class Cuenta {
     @NonNull
     private Double saldo;
     @NotNull
+    @Column(columnDefinition = "BOOLEAN")
     private Boolean estado;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

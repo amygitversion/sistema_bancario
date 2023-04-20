@@ -5,6 +5,7 @@ import com.nttdata.cuentas.entities.Cuenta;
 import com.nttdata.cuentas.excepciones.SaldoInsuficienteException;
 import com.nttdata.cuentas.repositories.CuentaRepository;
 import com.nttdata.movimientos.entities.Movimiento;
+import com.nttdata.reportes.dto.MovimientosDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

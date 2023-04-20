@@ -1,8 +1,7 @@
 package com.nttdata.reportes.controllers;
 
-import com.nttdata.movimientos.services.MovimientoService;
-import com.nttdata.reportes.dto.MovimientosPorFecha;
-import com.nttdata.reportes.services.MovimientosPorFechaService;
+import com.nttdata.reportes.dto.MovimientosDTO;
+import com.nttdata.reportes.services.MovimientosDTOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,22 +10,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
 @RestController
 @RequestMapping("/reportes")
-public class MovimientosPorFechaController {
+public class MovimientosDTOController {
     @Autowired
-    private MovimientosPorFechaService service;
+    private MovimientosDTOService service;
 
     @GetMapping
-    public ResponseEntity<?> listarMovimientosPorFecha(@RequestParam List<String> params) {
+    public ResponseEntity<?> listarMovimientosPorFecha(@RequestParam String fechaInicio,@RequestParam String fechaFin,@RequestParam String clienteId ) {
 
-        List<MovimientosPorFecha> movimientosPorFechas = null;
+        List<MovimientosDTO> movimientosPorFechas = null;
         try {
-            movimientosPorFechas = service.listaMovimientosPorFechaCliente(params);
+            movimientosPorFechas = service.listaMovimientosPorFechaCliente(fechaInicio,fechaFin,clienteId);
         } catch (ParseException e) {
             ResponseEntity.badRequest()
                     .body(Collections

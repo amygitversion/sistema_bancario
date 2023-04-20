@@ -6,7 +6,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.Optional;
 
-@NoRepositoryBean
 public interface PersonaRepository extends CrudRepository<Persona, Long> {
     Optional<Persona> findByIdentificacion(String identificacion);
 }

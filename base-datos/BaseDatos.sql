@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `db_sistema_bancario` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `db_sistema_bancario`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
 -- Host: localhost    Database: db_sistema_bancario
@@ -52,7 +50,7 @@ DROP TABLE IF EXISTS `cuenta`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cuenta` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `estado` bit(1) NOT NULL,
+  `estado` tinyint(1) NOT NULL,
   `numero` varchar(255) DEFAULT NULL,
   `saldo` double DEFAULT NULL,
   `tipo` varchar(255) DEFAULT NULL,
@@ -61,7 +59,7 @@ CREATE TABLE `cuenta` (
   UNIQUE KEY `UK_hsp0g5b3ckv9kgikc6e85l1jb` (`numero`),
   KEY `FK4p224uogyy5hmxvn8fwa2jlug` (`cliente_id`),
   CONSTRAINT `FK4p224uogyy5hmxvn8fwa2jlug` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +68,7 @@ CREATE TABLE `cuenta` (
 
 LOCK TABLES `cuenta` WRITE;
 /*!40000 ALTER TABLE `cuenta` DISABLE KEYS */;
-INSERT INTO `cuenta` VALUES (1,_binary '','478758',1425,'AHORRO',1),(2,_binary '','225487',700,'CORRIENTE',2),(4,_binary '','495878',150,'AHORRO',3),(5,_binary '','496825',0,'AHORRO',2),(6,_binary '','585545',1000,'CORRIENTE',1);
+INSERT INTO `cuenta` VALUES (1,1,'478758',1425,'AHORRO',1),(2,1,'225487',1300,'CORRIENTE',2),(3,1,'495878',300,'AHORRO',3),(4,1,'496825',0,'AHORRO',2),(5,1,'585545',1000,'CORRIENTE',1);
 /*!40000 ALTER TABLE `cuenta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +81,7 @@ DROP TABLE IF EXISTS `movimiento`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `movimiento` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `fecha` varchar(255) NOT NULL,
+  `fecha` date NOT NULL,
   `saldo_inicial` double NOT NULL,
   `tipo` varchar(255) NOT NULL,
   `valor_movimiento` double NOT NULL,
@@ -91,7 +89,7 @@ CREATE TABLE `movimiento` (
   PRIMARY KEY (`id`),
   KEY `FK4ea11fe7p3xa1kwwmdgi9f2fi` (`cuenta_id`),
   CONSTRAINT `FK4ea11fe7p3xa1kwwmdgi9f2fi` FOREIGN KEY (`cuenta_id`) REFERENCES `cuenta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +98,7 @@ CREATE TABLE `movimiento` (
 
 LOCK TABLES `movimiento` WRITE;
 /*!40000 ALTER TABLE `movimiento` DISABLE KEYS */;
-INSERT INTO `movimiento` VALUES (1,'10/02/2023',2000,'DEB',-575,1),(2,'10/02/2023',100,'CRE',600,2),(3,'10/02/2023',0,'CRE',150,4),(4,'10/02/2023',540,'DEB',-540,5);
+INSERT INTO `movimiento` VALUES (5,'2023-04-16',2000,'DEB',-575,1),(6,'2023-04-16',100,'CRE',600,2),(7,'2023-04-16',0,'CRE',150,3),(8,'2023-04-16',540,'DEB',-540,4);
 /*!40000 ALTER TABLE `movimiento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +127,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'Otavalo sn y principal',35,'M','1234567890','Jose Lema ','098254785'),(2,'Amazonas y  NNUU',35,'F','1234567891','Marianela Montalvo','098254785'),(3,'13 junio y Equinoccial',35,'M','1234567892','Juan Osorio','098874587');
+INSERT INTO `persona` VALUES (1,'Otavalo sn y principal',35,'M','1234567890','Juan Osorio','098254785'),(2,'Amazonas y  NNUU',33,'F','1234567891','Marianela Montalvo','097548965'),(3,'13 junio y Equinoccial',33,'M','1234567892','Juan Osorio','098874587');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -142,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-18  4:39:30
+-- Dump completed on 2023-04-20 11:12:00
